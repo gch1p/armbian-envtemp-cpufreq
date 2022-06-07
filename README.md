@@ -20,3 +20,7 @@ Works with [temphumd](https://git.ch1p.io/homekit.git/tree/src/temphumd.py) serv
 36 1080000
 40 888000
 ```
+
+## License
+
+BSD-2c
