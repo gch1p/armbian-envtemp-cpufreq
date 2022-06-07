@@ -104,4 +104,4 @@ while read temp; do
 done < <(for temp in ${!values[@]}; do echo $temp; done | sort -rn)
 
 echo -n "$freq" > /sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq
-echo "Environment temperature is $envtemp C, set max CPU frequency to $freq."
+logger -t "$(basename "$PROGNAME")" "Environment temperature is $envtemp C, set max CPU frequency to $freq."
