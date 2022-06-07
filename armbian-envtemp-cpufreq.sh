@@ -95,6 +95,7 @@ echo -n "read" >&3
 read -t 5 response <&3
 
 envtemp=$(echo "$response" | jq ".temp" | awk "{print int(\$1+0.5)}")
+[ -z "$envtemp" ] && die "failed to read environment temperature"
 
 # setting corresponding cpu freq
 while read temp; do
