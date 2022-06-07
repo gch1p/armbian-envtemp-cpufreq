@@ -100,8 +100,8 @@ envtemp=$(echo "$response" | jq ".temp" | awk "{print int(\$1+0.5)}")
 # setting corresponding cpu freq
 while read temp; do
 	freq=${values[$temp]}
-	(( envtemp >= temp )) && break
-done < <(for temp in ${!values[@]}; do echo $temp; done | sort -rn)
+	(( envtemp <= temp )) && break
+done < <(for temp in ${!values[@]}; do echo $temp; done | sort -n)
 
 echo -n "$freq" > /sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq
 logger -t "$(basename "$PROGNAME")" "Environment temperature is $envtemp C, set max CPU frequency to $freq."
